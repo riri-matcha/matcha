@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface Product {
   id: number;
@@ -250,8 +251,14 @@ export default function Home() {
                 </div>
               </div>
               <div className="text-center">
-                <div className="w-64 h-64 bg-gradient-to-br from-emerald-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-6xl">👩‍⚕️</span>
+                <div className="w-64 h-64 rounded-full overflow-hidden mx-auto mb-6 shadow-xl">
+                  <Image
+                    src="/raihanna.jpg"
+                    alt="Raihanna - Tandhygienist och Matcha-entusiast"
+                    width={256}
+                    height={256}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <p className="text-slate-600 font-inter text-lg">
                   Tandhygienist • Skönhetsexpert • Matcha-entusiast
