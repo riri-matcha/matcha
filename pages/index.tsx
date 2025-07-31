@@ -207,6 +207,52 @@ export default function Home() {
         </div>
       </header>
 
+      {/* Video Hero Section */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          poster="https://images.pexels.com/photos/1417945/pexels-photo-1417945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        >
+          <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=139&oauth2_token_id=57447761" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/40"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 text-center text-white max-w-6xl mx-auto px-6">
+          <h2 className="text-7xl font-playfair font-bold mb-8 leading-tight">
+            Upptäck Den Äkta<br />
+            <span className="text-emerald-300">Smaken av Matcha</span>
+          </h2>
+          <p className="text-2xl font-inter font-light mb-12 max-w-4xl mx-auto leading-relaxed">
+            Premium japansk matcha handplockad med kärlek och respekt för traditionen. 
+            Varje blad berättar en historia om passion och kvalitet.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <button className="bg-white text-slate-800 px-12 py-6 rounded-full font-inter font-semibold text-xl hover:bg-slate-100 transition-all duration-300 shadow-xl">
+              Upptäck Våra Produkter
+            </button>
+            <button className="border-2 border-white text-white px-12 py-6 rounded-full font-inter font-semibold text-xl hover:bg-white hover:text-slate-800 transition-all duration-300">
+              Läs Vår Historia
+            </button>
+          </div>
+        </div>
+        
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+          </div>
+        </div>
+      </section>
+
       <main className="max-w-7xl mx-auto px-6 py-16">
         
         {/* Hero Section */}
