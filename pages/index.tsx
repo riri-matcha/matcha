@@ -209,21 +209,17 @@ export default function Home() {
 
       {/* Video Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Video */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          poster="https://images.pexels.com/photos/1417945/pexels-photo-1417945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-        >
-          <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=139&oauth2_token_id=57447761" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        {/* Background Image */}
+        <Image
+          src="/matcha-hero.jpg"
+          alt="Premium Japanese Matcha"
+          fill
+          className="object-cover"
+          priority
+        />
         
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
         
         {/* Content */}
         <div className="relative z-10 text-center text-white max-w-6xl mx-auto px-6">
@@ -327,6 +323,15 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-xl border border-slate-100">
+              <div className="mb-8">
+                <Image
+                  src="/matcha-ceremony.jpg"
+                  alt="Traditionell japansk matcha-ceremoni"
+                  width={400}
+                  height={300}
+                  className="w-full h-64 object-cover rounded-2xl"
+                />
+              </div>
               <h3 className="text-3xl font-playfair font-bold text-slate-800 mb-6">
                 Upprinnelsen
               </h3>
@@ -349,6 +354,15 @@ export default function Home() {
             </div>
 
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-xl border border-slate-100">
+              <div className="mb-8">
+                <Image
+                  src="/matcha-quality.jpg"
+                  alt="Premium matcha-kvalitet"
+                  width={400}
+                  height={300}
+                  className="w-full h-64 object-cover rounded-2xl"
+                />
+              </div>
               <h3 className="text-3xl font-playfair font-bold text-slate-800 mb-6">
                 Varför Matcha är Bra
               </h3>
@@ -580,7 +594,15 @@ export default function Home() {
                 key={product.id}
                 className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-100"
               >
-                <div className="text-5xl mb-6 text-center">{product.image}</div>
+                <div className="mb-6">
+                  <Image
+                    src="/matcha-quality.jpg"
+                    alt={product.name}
+                    width={300}
+                    height={200}
+                    className="w-full h-48 object-cover rounded-2xl"
+                  />
+                </div>
                 <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-4">
                   {product.name}
                 </h3>
@@ -656,6 +678,15 @@ export default function Home() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div className="space-y-6">
+                <div className="mb-8">
+                  <Image
+                    src="/matcha-ceremony.jpg"
+                    alt="Handplockad matcha med kärlek"
+                    width={500}
+                    height={300}
+                    className="w-full h-64 object-cover rounded-2xl"
+                  />
+                </div>
                 <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-6">
                   Vårt Löfte
                 </h3>
@@ -694,6 +725,15 @@ export default function Home() {
                     <strong>Traditionell Malsning:</strong> Bladen mals med granitkvarnar enligt 
                     japansk tradition för att bevara alla näringsämnen och smaker.
                   </p>
+                </div>
+                <div className="mt-8">
+                  <Image
+                    src="/matcha-quality.jpg"
+                    alt="Traditionell matcha-tillverkning"
+                    width={500}
+                    height={300}
+                    className="w-full h-48 object-cover rounded-2xl"
+                  />
                 </div>
               </div>
             </div>
