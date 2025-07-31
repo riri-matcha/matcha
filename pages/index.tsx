@@ -26,7 +26,7 @@ const products: Product[] = [
   {
     id: 1,
     name: "Ceremonial Grade Matcha",
-    description: "Premium ceremonial grade matcha från Uji, Japan. Perfekt för morgonmeditation och yoga",
+    description: "Premium ceremonial grade matcha från Uji, Japan. Handplockad och traditionellt tillverkad",
     price: "299 kr",
     image: "🍵",
     category: "powder",
@@ -151,38 +151,20 @@ const cafeProducts: Product[] = [
 const locations: Location[] = [
   {
     id: 1,
+    city: "Jönköping",
+    country: "Sverige",
+    address: "Kungsgatan 15, 553 22 Jönköping",
+    phone: "+46 36 123 45 67",
+    hours: "Mån-Fre: 7:00-19:00, Lör-Sön: 9:00-18:00",
+    status: "coming-soon"
+  },
+  {
+    id: 2,
     city: "Marbella",
     country: "Spanien",
     address: "Cala Calypso 10, Marbella",
     phone: "+34 95 123 45 67",
     hours: "Lun-Vie: 7:00-20:00, Sáb-Dom: 8:00-19:00",
-    status: "open"
-  },
-  {
-    id: 2,
-    city: "Stockholm",
-    country: "Sverige",
-    address: "Drottninggatan 42, 111 21 Stockholm",
-    phone: "+46 8 123 45 67",
-    hours: "Mån-Fre: 7:00-19:00, Lör-Sön: 9:00-18:00",
-    status: "coming-soon"
-  },
-  {
-    id: 3,
-    city: "Göteborg",
-    country: "Sverige",
-    address: "Avenyn 15, 411 03 Göteborg",
-    phone: "+46 31 987 65 43",
-    hours: "Mån-Fre: 7:30-18:30, Lör-Sön: 9:00-17:00",
-    status: "coming-soon"
-  },
-  {
-    id: 4,
-    city: "Barcelona",
-    country: "Spanien",
-    address: "Passeig de Gràcia 89, 08008 Barcelona",
-    phone: "+34 93 876 54 32",
-    hours: "Lun-Vie: 7:30-19:30, Sáb-Dom: 8:30-18:30",
     status: "coming-soon"
   }
 ];
@@ -200,8 +182,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-emerald-50">
       <Head>
-        <title>Riri's Matcha - Mediterranean Wellness</title>
-        <meta name="description" content="Upptäck Raihanna's passion för matcha och mediterran livsstil i Cala Calypso, Marbella" />
+        <title>Riri's Matcha - Premium Japanese Matcha</title>
+        <meta name="description" content="Upptäck Raihanna's passion för premium japansk matcha - handplockad med kärlek och respekt för tradition" />
         <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
       </Head>
@@ -211,14 +193,14 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="text-center">
             <div className="flex items-center justify-center mb-4">
-              <span className="text-4xl mr-4">🌊</span>
+              <span className="text-4xl mr-4">🍵</span>
               <h1 className="text-5xl font-playfair font-bold text-slate-800">
                 Riri's Matcha
               </h1>
-              <span className="text-4xl ml-4">🌿</span>
+              <span className="text-4xl ml-4">🇯🇵</span>
             </div>
             <p className="text-center text-slate-600 mt-3 font-inter text-lg">
-              Mediterranean Wellness • Morning Energy • Natural Living
+              Premium Japanese Matcha • Handplockad med Kärlek • Traditionell Kvalitet
             </p>
           </div>
         </div>
@@ -226,222 +208,257 @@ export default function Home() {
 
       <main className="max-w-7xl mx-auto px-6 py-16">
         
-        {/* Personal Story Section */}
+        {/* Hero Section */}
+        <section className="mb-24">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-playfair font-bold text-slate-800 mb-8">
+              Välkommen till Riri's Matcha
+            </h2>
+            <p className="text-slate-600 font-inter text-xl max-w-4xl mx-auto leading-relaxed">
+              Upptäck den äkta smaken av premium japansk matcha. Varje blad handplockad med kärlek 
+              och respekt för traditionen. Det är inte bara grönt pulver - det är kärlek i varje kopp.
+            </p>
+          </div>
+        </section>
+
+        {/* About Raihanna Section */}
         <section className="mb-24">
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-xl border border-slate-100">
-            <div className="text-center mb-12">
-              <div className="w-32 h-32 bg-gradient-to-br from-blue-400 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-8">
-                <span className="text-5xl">🌊</span>
-              </div>
-              <h2 className="text-4xl font-playfair font-bold text-slate-800 mb-6">
-                Hej, jag är Raihanna! 👋
-              </h2>
-              <p className="text-slate-600 font-inter text-xl max-w-4xl mx-auto leading-relaxed">
-                Född i Sverige men nu bor jag i Cala Calypso, 10 minuter från Marbella. 
-                Jag älskar havet, naturen och den varma solen. Som lejon (född 20 augusti) 
-                är jag en morgonmänniska som älskar yoga, meditation och hälsosam mat.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div className="space-y-6">
-                <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-6">
-                  Min Livsstil 🌿
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h3 className="text-4xl font-playfair font-bold text-slate-800 mb-6">
+                  Om Raihanna
                 </h3>
-                <div className="space-y-4 text-slate-600 font-inter">
-                  <div className="flex items-center gap-4">
-                    <span className="text-3xl">🌅</span>
-                    <span className="text-lg">Morgonmänniska - älskar tidiga morgnar</span>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <span className="text-3xl">🧘</span>
-                    <span className="text-lg">Yoga och meditation för mindfulness</span>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <span className="text-3xl">💪</span>
-                    <span className="text-lg">Gymmar och tar långa promenader</span>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <span className="text-3xl">🏀</span>
-                    <span className="text-lg">Spelade basketball som ung</span>
-                  </div>
+                <div className="space-y-6 text-slate-600 font-inter text-lg leading-relaxed">
+                  <p>
+                    Som tandhygienist och med bakgrund inom skönhetsbehandlingar som botox och fillers, 
+                    har jag alltid varit passionerad för hälsa och välbefinnande. Min resa med matcha 
+                    började när jag upptäckte skillnaden mellan äkta japansk matcha och de blandade 
+                    produkterna på marknaden.
+                  </p>
+                  <p>
+                    Ju mer jag drack runt och testade olika matcha-sorter, desto tydligare blev det 
+                    att många produkter innehöll tillsatser och var långt ifrån den äkta smaken. 
+                    Detta blev en utmaning för mig - att hitta den perfekta matchan.
+                  </p>
+                  <p>
+                    Därför skapade jag Riri's Matcha. Varje blad är handplockat med kärlek, och 
+                    största delen av pengarna går till arbetarna bakom matchan. Jag älskar att ge 
+                    kärlek tillbaka till människor - det handlar inte bara om mig, utan om att 
+                    hjälpa andra som behöver arbete för att försörja sina familjer.
+                  </p>
                 </div>
               </div>
-              
-              <div className="space-y-6">
-                <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-6">
-                  Min Passion för Hälsa 🥗
-                </h3>
-                <div className="space-y-4 text-slate-600 font-inter">
-                  <div className="flex items-center gap-4">
-                    <span className="text-3xl">🥗</span>
-                    <span className="text-lg">Älskar hälsosam mat och grönsaker</span>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <span className="text-3xl">🥜</span>
-                    <span className="text-lg">Passionerad för frukt och nötter</span>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <span className="text-3xl">🌊</span>
-                    <span className="text-lg">Naturmänniska som älskar havet</span>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <span className="text-3xl">🤗</span>
-                    <span className="text-lg">Umgås gärna med nära och kära</span>
-                  </div>
+              <div className="text-center">
+                <div className="w-64 h-64 bg-gradient-to-br from-emerald-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-6xl">👩‍⚕️</span>
                 </div>
+                <p className="text-slate-600 font-inter text-lg">
+                  Tandhygienist • Skönhetsexpert • Matcha-entusiast
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Mediterranean Lifestyle Section */}
+        {/* Matcha History Section */}
         <section className="mb-24">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-playfair font-bold text-slate-800 mb-6">
-              Mediterranean Wellness
+              Matcha's Historia
             </h2>
             <p className="text-slate-600 font-inter text-xl max-w-3xl mx-auto">
-              Inspirerat av livet i Cala Calypso - havet, solen och den naturliga livsstilen
+              En resa genom tid och tradition
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-xl border border-slate-100">
+              <h3 className="text-3xl font-playfair font-bold text-slate-800 mb-6">
+                Upprinnelsen
+              </h3>
+              <div className="space-y-4 text-slate-600 font-inter text-lg leading-relaxed">
+                <p>
+                  Matcha har sina rötter i det gamla Kina under Tang-dynastin (618-907), där 
+                  teblad maldes till pulver för medicinskt bruk. Det var dock i Japan som matcha 
+                  utvecklades till den konstform vi känner idag.
+                </p>
+                <p>
+                  På 1100-talet introducerade zen-munken Eisai matcha i Japan, och det blev 
+                  snart en central del av den japanska teceremonin. Samurajer drack matcha 
+                  för att förbättra sin fokus och energi innan strider.
+                </p>
+                <p>
+                  Idag produceras den finaste matchan i Uji-regionen nära Kyoto, där klimatet 
+                  och jorden är perfekt för odling av de bästa tebladen.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-xl border border-slate-100">
+              <h3 className="text-3xl font-playfair font-bold text-slate-800 mb-6">
+                Varför Matcha är Bra
+              </h3>
+              <div className="space-y-4 text-slate-600 font-inter text-lg leading-relaxed">
+                <p>
+                  <strong>Antioxidanter:</strong> Matcha innehåller 137 gånger mer EGCG än vanligt grönt te, 
+                  vilket hjälper till att bekämpa fria radikaler och stödja immunförsvaret.
+                </p>
+                <p>
+                  <strong>L-Theanin:</strong> En unik aminosyra som ger lugnande energi utan nervositet, 
+                  perfekt för fokus och mindfulness.
+                </p>
+                <p>
+                  <strong>Koffein:</strong> Naturligt koffein som absorberas långsamt, ger energi 
+                  som varar upp till 6 timmar utan krasch.
+                </p>
+                <p>
+                  <strong>Klorofyll:</strong> Det höga klorofyllinnehållet hjälper kroppen att 
+                  rena sig naturligt och stödja cellernas återhämtning.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Quality Section */}
+        <section className="mb-24">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-playfair font-bold text-slate-800 mb-6">
+              Varför Vår Matcha är Bättre
+            </h2>
+            <p className="text-slate-600 font-inter text-xl max-w-3xl mx-auto">
+              Handplockad med kärlek och respekt för traditionen
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-slate-100 hover:shadow-2xl transition-all duration-500">
-              <div className="text-center mb-8">
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-3xl">🌅</span>
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-4">
-                  Morgonritualer
-                </h3>
-                <p className="text-slate-600 font-inter text-lg">
-                  Starta dagen med matcha, yoga och meditation
-                </p>
-              </div>
-              <div className="space-y-3 text-lg text-slate-600 font-inter">
-                <p>☀️ Tidiga morgnar vid havet</p>
-                <p>🧘 Yoga och mindfulness</p>
-                <p>🍵 Matcha för naturlig energi</p>
-                <p>🌿 Jordnära och närvaro</p>
-              </div>
-            </div>
-
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-slate-100 hover:shadow-2xl transition-all duration-500">
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-slate-100">
               <div className="text-center mb-8">
                 <div className="w-20 h-20 bg-gradient-to-br from-emerald-400 to-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-3xl">🥗</span>
+                  <span className="text-3xl">🇯🇵</span>
                 </div>
                 <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-4">
-                  Hälsosam Mat
+                  Äkta Japansk
                 </h3>
                 <p className="text-slate-600 font-inter text-lg">
-                  Passion för grönsaker, frukt och nötter
+                  Endast från Uji-regionen i Japan
                 </p>
               </div>
               <div className="space-y-3 text-lg text-slate-600 font-inter">
-                <p>🥬 Färska grönsaker</p>
-                <p>🍎 Naturlig frukt</p>
-                <p>🥜 Hjärtfriska nötter</p>
-                <p>💚 Matcha för välbefinnande</p>
+                <p>🍃 Ceremonial grade kvalitet</p>
+                <p>🌿 Skuggad odling</p>
+                <p>👐 Handplockad</p>
+                <p>💚 100% naturlig</p>
               </div>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-slate-100 hover:shadow-2xl transition-all duration-500">
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-slate-100">
               <div className="text-center mb-8">
-                <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-3xl">🌊</span>
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-3xl">❤️</span>
                 </div>
                 <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-4">
-                  Aktiva Dagar
+                  Med Kärlek
                 </h3>
                 <p className="text-slate-600 font-inter text-lg">
-                  Gym, promenader och havet
+                  Stödjer lokala arbetare
                 </p>
               </div>
               <div className="space-y-3 text-lg text-slate-600 font-inter">
-                <p>💪 Regelbunden träning</p>
-                <p>🚶‍♀️ Långa promenader</p>
-                <p>🏀 Basketball bakgrund</p>
-                <p>🌊 Havets helande kraft</p>
+                <p>👥 Rättvis kompensation</p>
+                <p>🏠 Stödjer familjer</p>
+                <p>🌍 Hållbar produktion</p>
+                <p>🤝 Respekt för tradition</p>
+              </div>
+            </div>
+
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-slate-100">
+              <div className="text-center mb-8">
+                <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-3xl">✨</span>
+                </div>
+                <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-4">
+                  Perfekt Kvalitet
+                </h3>
+                <p className="text-slate-600 font-inter text-lg">
+                  Inga tillsatser eller blandningar
+                </p>
+              </div>
+              <div className="space-y-3 text-lg text-slate-600 font-inter">
+                <p>🔍 Testad och verifierad</p>
+                <p>🌱 Organisk odling</p>
+                <p>🧪 Laboratorietestad</p>
+                <p>📦 Säker förpackning</p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Logo Concept Section */}
+        {/* How to Recognize Good Matcha */}
         <section className="mb-24">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-playfair font-bold text-slate-800 mb-6">
-              Logo Koncept för Riri's Matcha
-            </h2>
-            <p className="text-slate-600 font-inter text-xl max-w-3xl mx-auto">
-              Baserat på din mediterrana livsstil - havet, naturen och hälsosam energi
-            </p>
-          </div>
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-xl border border-slate-100">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-playfair font-bold text-slate-800 mb-6">
+                Hur Känner Man Igen Bra Matcha?
+              </h2>
+              <p className="text-slate-600 font-inter text-xl max-w-3xl mx-auto">
+                Lär dig att identifiera äkta, hög kvalitet matcha
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Logo Concept 1 */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-slate-100 hover:shadow-2xl transition-all duration-500">
-              <div className="text-center mb-8">
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-400 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-4xl">🌊</span>
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-4">
-                  Mediterranean Matcha
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-6">
+                  Utseende
                 </h3>
-                <p className="text-slate-600 font-inter text-lg">
-                  Havets kraft möter matcha's naturliga energi
-                </p>
+                <div className="space-y-4 text-slate-600 font-inter text-lg">
+                  <div className="flex items-start gap-4">
+                    <span className="text-2xl">✅</span>
+                    <div>
+                      <strong>Bra Matcha:</strong> Mörk, intensiv grön färg, fin och silkeslen textur
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <span className="text-2xl">❌</span>
+                    <div>
+                      <strong>Dålig Matcha:</strong> Ljusgrön eller gulaktig, grov textur, synliga fibrer
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="space-y-3 text-lg text-slate-600 font-inter">
-                <p>🌊 Havets helande kraft</p>
-                <p>🌿 Naturlig och ren</p>
-                <p>☀️ Solens värme</p>
-                <p>🧘 Mindfulness och yoga</p>
+
+              <div>
+                <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-6">
+                  Smak
+                </h3>
+                <div className="space-y-4 text-slate-600 font-inter text-lg">
+                  <div className="flex items-start gap-4">
+                    <span className="text-2xl">✅</span>
+                    <div>
+                      <strong>Bra Matcha:</strong> Söt umami, mild bitterhet, rik och komplex
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <span className="text-2xl">❌</span>
+                    <div>
+                      <strong>Dålig Matcha:</strong> Skarp bitterhet, metallisk smak, enkel och platt
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Logo Concept 2 */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-slate-100 hover:shadow-2xl transition-all duration-500">
-              <div className="text-center mb-8">
-                <div className="w-24 h-24 bg-gradient-to-br from-emerald-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-4xl">🌅</span>
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-4">
-                  Morning Wellness
-                </h3>
-                <p className="text-slate-600 font-inter text-lg">
-                  Morgonenergi och hälsosam livsstil
-                </p>
-              </div>
-              <div className="space-y-3 text-lg text-slate-600 font-inter">
-                <p>🌅 Morgonmänniska</p>
-                <p>🧘 Yoga och meditation</p>
-                <p>🥗 Hälsosam mat</p>
-                <p>💪 Aktiva dagar</p>
-              </div>
-            </div>
-
-            {/* Logo Concept 3 */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-slate-100 hover:shadow-2xl transition-all duration-500">
-              <div className="text-center mb-8">
-                <div className="w-24 h-24 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-4xl">🌿</span>
-                </div>
-                <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-4">
-                  Natural Living
-                </h3>
-                <p className="text-slate-600 font-inter text-lg">
-                  Jordnära och naturlig livsstil
-                </p>
-              </div>
-              <div className="space-y-3 text-lg text-slate-600 font-inter">
-                <p>🌿 Jordnära och närvaro</p>
-                <p>🥜 Naturliga ingredienser</p>
-                <p>🤗 Umgås med nära och kära</p>
-                <p>💚 Passion för hälsa</p>
-              </div>
+            <div className="mt-12 p-8 bg-emerald-50 rounded-2xl">
+              <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-4">
+                Vår Matcha - Den Äkta Smaken
+              </h3>
+              <p className="text-slate-600 font-inter text-lg leading-relaxed">
+                Vår matcha kommer direkt från Uji, Japan och har den perfekta balansen mellan 
+                sötma och umami. Varje batch testas noggrant för att säkerställa att du får 
+                den äkta smaken utan tillsatser eller blandningar. Det är inte bara grönt pulver 
+                - det är kärlek och tradition i varje kopp.
+              </p>
             </div>
           </div>
         </section>
@@ -537,7 +554,7 @@ export default function Home() {
               Våra Kaffetorier
             </h2>
             <p className="text-slate-600 font-inter text-xl max-w-3xl mx-auto">
-              Upptäck våra kaffetorier i Spanien och Sverige
+              Upptäck våra kaffetorier i Sverige och Spanien
             </p>
           </div>
 
@@ -572,193 +589,60 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Inspiration Section */}
+        {/* Love and Care Section */}
         <section className="mb-24">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-playfair font-bold text-slate-800 mb-6">
-              Vår Inspiration
-            </h2>
-            <p className="text-slate-600 font-inter text-xl max-w-3xl mx-auto">
-              Vi inspireras av världens bästa matcha-varumärken
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-xl border border-slate-100">
-              <div className="text-center mb-8">
-                <div className="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-4xl">🍵</span>
-                </div>
-                <h3 className="text-3xl font-playfair font-bold text-slate-800 mb-4">
-                  @weareamatchaaday
-                </h3>
-                <p className="text-slate-600 font-inter text-lg">
-                  Inspirerar oss med deras kreativa matcha-recept och vackra presentation
-                </p>
-              </div>
-              <div className="space-y-4 text-lg text-slate-600 font-inter">
-                <p>✨ Kreativa drinkkombinationer</p>
-                <p>🎨 Vacker visuell presentation</p>
-                <p>🌿 Fokus på naturliga ingredienser</p>
-                <p>💚 Passion för matcha-kvalitet</p>
-              </div>
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-xl border border-slate-100">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-playfair font-bold text-slate-800 mb-6">
+                Kärlek Bakom Varje Kopp
+              </h2>
+              <p className="text-slate-600 font-inter text-xl max-w-3xl mx-auto">
+                Det handlar inte bara om matcha - det handlar om människor
+              </p>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-xl border border-slate-100">
-              <div className="text-center mb-8">
-                <div className="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-4xl">🇯🇵</span>
-                </div>
-                <h3 className="text-3xl font-playfair font-bold text-slate-800 mb-4">
-                  @the_matcha_tokyo
-                </h3>
-                <p className="text-slate-600 font-inter text-lg">
-                  Visar oss den traditionella japanska matcha-kulturen
-                </p>
-              </div>
-              <div className="space-y-4 text-lg text-slate-600 font-inter">
-                <p>🏯 Traditionell japansk estetik</p>
-                <p>🎎 Ceremonial grade matcha</p>
-                <p>🍃 Autentisk matcha-upplevelse</p>
-                <p>✨ Mindfulness och meditation</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Moodboard Section */}
-        <section className="mb-24">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-playfair font-bold text-slate-800 mb-6">
-              Design Moodboard
-            </h2>
-            <p className="text-slate-600 font-inter text-xl max-w-3xl mx-auto">
-              Färger och typsnitt som inspirerar och harmonierar med matcha-temat
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            
-            {/* Color Palette */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-xl border border-slate-100">
-              <h3 className="text-3xl font-playfair font-bold text-slate-800 mb-8">
-                Färgpalett
-              </h3>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div className="space-y-6">
-                <div className="flex items-center gap-6">
-                  <div className="w-20 h-20 rounded-2xl bg-slate-50 border-2 border-slate-200"></div>
-                  <div>
-                    <p className="font-inter font-semibold text-slate-800 text-lg">Slate Light</p>
-                    <p className="text-slate-600">#f8fafc</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-6">
-                  <div className="w-20 h-20 rounded-2xl bg-slate-100 border-2 border-slate-300"></div>
-                  <div>
-                    <p className="font-inter font-semibold text-slate-800 text-lg">Sage Gray</p>
-                    <p className="text-slate-600">#f1f5f9</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-6">
-                  <div className="w-20 h-20 rounded-2xl bg-slate-800 border-2 border-slate-900"></div>
-                  <div>
-                    <p className="font-inter font-semibold text-slate-800 text-lg">Slate Dark</p>
-                    <p className="text-slate-600">#1e293b</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-6">
-                  <div className="w-20 h-20 rounded-2xl bg-emerald-600 border-2 border-emerald-700"></div>
-                  <div>
-                    <p className="font-inter font-semibold text-slate-800 text-lg">Emerald Green</p>
-                    <p className="text-slate-600">#059669</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-6">
-                  <div className="w-20 h-20 rounded-2xl bg-blue-50 border-2 border-blue-200"></div>
-                  <div>
-                    <p className="font-inter font-semibold text-slate-800 text-lg">Ocean Blue</p>
-                    <p className="text-slate-600">#eff6ff</p>
-                  </div>
+                <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-6">
+                  Vårt Löfte
+                </h3>
+                <div className="space-y-4 text-slate-600 font-inter text-lg leading-relaxed">
+                  <p>
+                    <strong>Rättvis Kompensation:</strong> Största delen av pengarna går till 
+                    arbetarna bakom matchan. Vi betalar över marknadspris för att säkerställa 
+                    att alla får en bra lön.
+                  </p>
+                  <p>
+                    <strong>Familjer Först:</strong> Vi stödjer arbetare som behöver försörja 
+                    sina familjer. Det handlar inte bara om att sälja matcha - det handlar om 
+                    att hjälpa människor att betala räkningar och köpa mat.
+                  </p>
+                  <p>
+                    <strong>Hållbarhet:</strong> Vi arbetar endast med odlare som respekterar 
+                    naturen och använder traditionella metoder som skyddar jorden för framtida generationer.
+                  </p>
                 </div>
               </div>
-            </div>
 
-            {/* Typography */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-xl border border-slate-100">
-              <h3 className="text-3xl font-playfair font-bold text-slate-800 mb-8">
-                Typsnitt
-              </h3>
-              <div className="space-y-8">
-                <div>
-                  <h4 className="font-playfair text-3xl font-bold text-slate-800 mb-4">
-                    Playfair Display
-                  </h4>
-                  <p className="font-playfair text-slate-600 text-lg">
-                    Elegant serif för rubriker och titlar
+              <div className="space-y-6">
+                <h3 className="text-2xl font-playfair font-bold text-slate-800 mb-6">
+                  Traditionell Kvalitet
+                </h3>
+                <div className="space-y-4 text-slate-600 font-inter text-lg leading-relaxed">
+                  <p>
+                    <strong>Handplockad:</strong> Varje blad plockas för hand av erfarna arbetare 
+                    som känner till traditionen och respekterar plantan.
                   </p>
-                  <p className="font-playfair text-slate-700 mt-4 text-xl">
-                    Riri's Matcha - Premium Quality
+                  <p>
+                    <strong>Skuggad Odling:</strong> Våra teblad odlas under skuggning i 3-4 veckor 
+                    innan skörd, vilket ökar klorofyllinnehållet och ger den intensiva gröna färgen.
                   </p>
-                </div>
-                <div>
-                  <h4 className="font-inter text-2xl font-semibold text-slate-800 mb-4">
-                    Inter
-                  </h4>
-                  <p className="font-inter text-slate-600 text-lg">
-                    Modern sans-serif för brödtext och UI
-                  </p>
-                  <p className="font-inter text-slate-700 mt-4 text-xl">
-                    Clean, readable, and contemporary
+                  <p>
+                    <strong>Traditionell Malsning:</strong> Bladen mals med granitkvarnar enligt 
+                    japansk tradition för att bevara alla näringsämnen och smaker.
                   </p>
                 </div>
-                <div className="pt-6 border-t border-slate-200">
-                  <h5 className="font-inter font-semibold text-slate-800 mb-4 text-xl">
-                    Text Hierarki
-                  </h5>
-                  <div className="space-y-3 text-lg">
-                    <p className="font-playfair text-2xl text-slate-800">H1 - Playfair Display Bold</p>
-                    <p className="font-playfair text-xl text-slate-700">H2 - Playfair Display Regular</p>
-                    <p className="font-inter text-lg text-slate-600">Body - Inter Regular</p>
-                    <p className="font-inter text-base text-slate-500">Caption - Inter Light</p>
-                  </div>
-                </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Design Principles */}
-        <section className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-xl border border-slate-100">
-          <h3 className="text-3xl font-playfair font-bold text-slate-800 mb-8 text-center">
-            Design Principer
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-3xl">🌿</span>
-              </div>
-              <h4 className="font-playfair font-bold text-slate-800 mb-4 text-xl">Naturlig</h4>
-              <p className="font-inter text-slate-600 text-lg">
-                Inspiration från naturen och matcha's ursprung
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-3xl">✨</span>
-              </div>
-              <h4 className="font-playfair font-bold text-slate-800 mb-4 text-xl">Elegant</h4>
-              <p className="font-inter text-slate-600 text-lg">
-                Sofistikerad design med fokus på kvalitet
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-3xl">🧘</span>
-              </div>
-              <h4 className="font-playfair font-bold text-slate-800 mb-4 text-xl">Harmonisk</h4>
-              <p className="font-inter text-slate-600 text-lg">
-                Balans mellan tradition och modernitet
-              </p>
             </div>
           </div>
         </section>
@@ -772,7 +656,7 @@ export default function Home() {
             © 2024 Riri's Matcha. Skapat med ❤️ och passion
           </p>
           <p className="font-inter text-slate-200 text-lg mt-3">
-            Cala Calypso, Marbella • Sverige • Online
+            Jönköping • Marbella • Online
           </p>
         </div>
       </footer>
