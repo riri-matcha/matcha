@@ -596,7 +596,9 @@ export default function Home() {
               >
                 <div className="mb-6">
                   <Image
-                    src="/matcha-quality.jpg"
+                    src={product.category === "powder" ? "/matcha-powder.jpg" : 
+                          product.category === "drinks" ? "/matcha-latte.jpg" : 
+                          "/matcha-quality.jpg"}
                     alt={product.name}
                     width={300}
                     height={200}
