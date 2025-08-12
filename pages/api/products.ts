@@ -1,9 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { sql } from '@vercel/postgres';
+import { createClient } from '@vercel/postgres';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     try {
+      const client = createClient();
       const { category } = req.query;
       
       let query = 'SELECT * FROM products WHERE is_available = true';
@@ -16,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       
       query += ' ORDER BY created_at DESC';
       
-      const result = await sql.query(query, params);
+      const result = await client.query(query, params);
       
       res.status(200).json(result.rows);
     } catch (error) {
@@ -25,9 +26,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   } else if (req.method === 'POST') {
     try {
+      const client = createClient();
       const { name, description, price, category, image_url, is_available, is_ecommerce } = req.body;
       
-      const result = await sql`
+      const result = await client.sql`
         INSERT INTO products (name, description, price, category, image_url, is_available, is_ecommerce)
         VALUES (${name}, ${description}, ${price}, ${category}, ${image_url}, ${is_available}, ${is_ecommerce})
         RETURNING *

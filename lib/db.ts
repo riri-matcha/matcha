@@ -1,9 +1,11 @@
-import { sql } from '@vercel/postgres';
+import { createClient } from '@vercel/postgres';
 
 export async function createTables() {
   try {
+    const client = createClient();
+    
     // Create products table
-    await sql`
+    await client.sql`
       CREATE TABLE IF NOT EXISTS products (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
@@ -19,7 +21,7 @@ export async function createTables() {
     `;
 
     // Create orders table
-    await sql`
+    await client.sql`
       CREATE TABLE IF NOT EXISTS orders (
         id SERIAL PRIMARY KEY,
         customer_name VARCHAR(255) NOT NULL,
@@ -32,7 +34,7 @@ export async function createTables() {
     `;
 
     // Create order_items table
-    await sql`
+    await client.sql`
       CREATE TABLE IF NOT EXISTS order_items (
         id SERIAL PRIMARY KEY,
         order_id INTEGER REFERENCES orders(id),
@@ -44,7 +46,7 @@ export async function createTables() {
     `;
 
     // Create matcha_images table for blob storage
-    await sql`
+    await client.sql`
       CREATE TABLE IF NOT EXISTS matcha_images (
         id SERIAL PRIMARY KEY,
         filename VARCHAR(255) NOT NULL,
@@ -63,6 +65,8 @@ export async function createTables() {
 
 export async function seedProducts() {
   try {
+    const client = createClient();
+    
     const products = [
       {
         name: "Ceremonial Grade Matcha",
@@ -127,7 +131,7 @@ export async function seedProducts() {
     ];
 
     for (const product of products) {
-      await sql`
+      await client.sql`
         INSERT INTO products (name, description, price, category, image_url, blob_url, is_available, is_ecommerce)
         VALUES (${product.name}, ${product.description}, ${product.price}, ${product.category}, ${product.image_url}, ${product.blob_url}, ${product.is_available}, ${product.is_ecommerce})
         ON CONFLICT (id) DO NOTHING;
@@ -142,7 +146,9 @@ export async function seedProducts() {
 
 export async function saveBlobImage(filename: string, blobUrl: string, category?: string, description?: string) {
   try {
-    await sql`
+    const client = createClient();
+    
+    await client.sql`
       INSERT INTO matcha_images (filename, blob_url, category, description)
       VALUES (${filename}, ${blobUrl}, ${category}, ${description})
     `;
@@ -155,6 +161,8 @@ export async function saveBlobImage(filename: string, blobUrl: string, category?
 
 export async function getBlobImages(category?: string) {
   try {
+    const client = createClient();
+    
     let query = 'SELECT * FROM matcha_images';
     const params: any[] = [];
     
@@ -165,7 +173,7 @@ export async function getBlobImages(category?: string) {
     
     query += ' ORDER BY uploaded_at DESC';
     
-    const result = await sql.query(query, params);
+    const result = await client.query(query, params);
     return result.rows;
   } catch (error) {
     console.error('Error fetching blob images:', error);

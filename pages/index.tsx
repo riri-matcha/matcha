@@ -23,6 +23,15 @@ interface Location {
   status: 'coming-soon' | 'open' | 'closed';
 }
 
+interface LocalImage {
+  id: number;
+  filename: string;
+  image_url: string;
+  category: string;
+  description: string;
+  uploaded_at: string;
+}
+
 const products: Product[] = [
   {
     id: 1,
@@ -175,6 +184,58 @@ const categories = ["alla", "drinks", "food", "powder", "mix", "accessories", "s
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState("alla");
   const [activeTab, setActiveTab] = useState("cafe"); // "cafe" or "shop"
+  
+  // Static local images data - no need for API fetch
+  const localImages: LocalImage[] = [
+    {
+      id: 1,
+      filename: "matcha-ceremony.jpg",
+      image_url: "/matcha-ceremony.jpg",
+      category: "ceremony",
+      description: "Traditional Japanese matcha ceremony setup",
+      uploaded_at: new Date().toISOString()
+    },
+    {
+      id: 2,
+      filename: "matcha-hero.jpg",
+      image_url: "/matcha-hero.jpg",
+      category: "hero",
+      description: "Premium matcha powder and preparation",
+      uploaded_at: new Date().toISOString()
+    },
+    {
+      id: 3,
+      filename: "matcha-latte.jpg",
+      image_url: "/matcha-latte.jpg",
+      category: "drinks",
+      description: "Delicious matcha latte",
+      uploaded_at: new Date().toISOString()
+    },
+    {
+      id: 4,
+      filename: "matcha-powder.jpg",
+      image_url: "/matcha-powder.jpg",
+      category: "powder",
+      description: "High-quality ceremonial grade matcha powder",
+      uploaded_at: new Date().toISOString()
+    },
+    {
+      id: 5,
+      filename: "matcha-quality.jpg",
+      image_url: "/matcha-quality.jpg",
+      category: "quality",
+      description: "Premium matcha quality and texture",
+      uploaded_at: new Date().toISOString()
+    },
+    {
+      id: 6,
+      filename: "raihanna.jpg",
+      image_url: "/raihanna.jpg",
+      category: "founder",
+      description: "Raihanna - Founder and matcha enthusiast",
+      uploaded_at: new Date().toISOString()
+    }
+  ];
 
   const filteredProducts = selectedCategory === "alla" 
     ? (activeTab === "cafe" ? cafeProducts : products)
@@ -210,13 +271,23 @@ export default function Home() {
       {/* Video Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
-        <Image
-          src="/matcha-hero.jpg"
-          alt="Premium Japanese Matcha"
-          fill
-          className="object-cover"
-          priority
-        />
+        {localImages.length > 0 ? (
+          <Image
+            src={localImages.find(img => img.category === "hero")?.image_url || "/matcha-hero.jpg"}
+            alt="Premium Japanese Matcha"
+            fill
+            className="object-cover"
+            priority
+          />
+        ) : (
+          <Image
+            src="/matcha-hero.jpg"
+            alt="Premium Japanese Matcha"
+            fill
+            className="object-cover"
+            priority
+          />
+        )}
         
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/50"></div>
@@ -238,6 +309,9 @@ export default function Home() {
             <button className="border-2 border-white text-white px-12 py-6 rounded-full font-inter font-semibold text-xl hover:bg-white hover:text-slate-800 transition-all duration-300">
               Läs Vår Historia
             </button>
+            <a href="/blob-test" className="border-2 border-emerald-300 text-emerald-300 px-8 py-6 rounded-full font-inter font-semibold text-lg hover:bg-emerald-300 hover:text-slate-800 transition-all duration-300">
+              Test Blob Storage
+            </a>
           </div>
         </div>
         
@@ -250,6 +324,17 @@ export default function Home() {
       </section>
 
       <main className="max-w-7xl mx-auto px-6 py-16">
+        
+        {/* Debug Section - Remove this later */}
+        {process.env.NODE_ENV === 'development' && (
+          <div className="mb-8 p-4 bg-yellow-100 border border-yellow-300 rounded-lg">
+            <h3 className="font-bold text-yellow-800 mb-2">Debug Info:</h3>
+            <p className="text-sm text-yellow-700">Images Loaded: Yes</p>
+            <p className="text-sm text-yellow-700">Local Images Count: {localImages.length}</p>
+            <p className="text-sm text-yellow-700">Hero Image: {localImages.find(img => img.category === "hero")?.image_url || 'Not found'}</p>
+            <p className="text-sm text-yellow-700">Founder Image: {localImages.find(img => img.category === "founder")?.image_url || 'Not found'}</p>
+          </div>
+        )}
         
         {/* Hero Section */}
         <section className="mb-24">
@@ -295,7 +380,7 @@ export default function Home() {
               <div className="text-center">
                 <div className="w-64 h-64 rounded-full overflow-hidden mx-auto mb-6 shadow-xl">
                   <Image
-                    src="/raihanna.jpg"
+                    src={localImages.find(img => img.category === "founder")?.image_url || "/raihanna.jpg"}
                     alt="Raihanna - Tandhygienist och Matcha-entusiast"
                     width={256}
                     height={256}
@@ -325,7 +410,7 @@ export default function Home() {
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-xl border border-slate-100">
               <div className="mb-8">
                 <Image
-                  src="/matcha-ceremony.jpg"
+                  src={localImages.find(img => img.category === "ceremony")?.image_url || "/matcha-ceremony.jpg"}
                   alt="Traditionell japansk matcha-ceremoni"
                   width={400}
                   height={300}
@@ -356,7 +441,7 @@ export default function Home() {
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-xl border border-slate-100">
               <div className="mb-8">
                 <Image
-                  src="/matcha-quality.jpg"
+                  src={localImages.find(img => img.category === "quality")?.image_url || "/matcha-quality.jpg"}
                   alt="Premium matcha-kvalitet"
                   width={400}
                   height={300}
@@ -596,9 +681,9 @@ export default function Home() {
               >
                 <div className="mb-6">
                   <Image
-                    src={product.category === "powder" ? "/matcha-powder.jpg" : 
-                          product.category === "drinks" ? "/matcha-latte.jpg" : 
-                          "/matcha-quality.jpg"}
+                    src={product.category === "powder" ? (localImages.find(img => img.category === "powder")?.image_url || "/matcha-powder.jpg") :
+                          product.category === "drinks" ? (localImages.find(img => img.category === "drinks")?.image_url || "/matcha-latte.jpg") :
+                          (localImages.find(img => img.category === "quality")?.image_url || "/matcha-quality.jpg")}
                     alt={product.name}
                     width={300}
                     height={200}
@@ -682,7 +767,7 @@ export default function Home() {
               <div className="space-y-6">
                 <div className="mb-8">
                   <Image
-                    src="/matcha-ceremony.jpg"
+                    src={localImages.find(img => img.category === "ceremony")?.image_url || "/matcha-ceremony.jpg"}
                     alt="Handplockad matcha med kärlek"
                     width={500}
                     height={300}
@@ -730,7 +815,7 @@ export default function Home() {
                 </div>
                 <div className="mt-8">
                   <Image
-                    src="/matcha-quality.jpg"
+                    src={localImages.find(img => img.category === "quality")?.image_url || "/matcha-quality.jpg"}
                     alt="Traditionell matcha-tillverkning"
                     width={500}
                     height={300}

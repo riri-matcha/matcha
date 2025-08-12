@@ -1,25 +1,27 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { put } from '@vercel/blob';
 
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    const { filename, data, contentType } = req.body;
-
-    if (!filename || !data) {
-      return res.status(400).json({ error: 'Filename and data are required' });
+    // Get filename from query params
+    const { filename } = req.query;
+    
+    if (!filename || typeof filename !== 'string') {
+      return res.status(400).json({ error: 'Filename is required' });
     }
 
-    // Convert base64 to buffer
-    const buffer = Buffer.from(data, 'base64');
-    
-    // Create a File-like object
-    const file = new File([buffer], filename, { type: contentType || 'image/jpeg' });
-
-    const blob = await put(filename, file, {
+    // Upload the file directly to blob
+    const blob = await put(filename, req, {
       access: 'public',
     });
 
