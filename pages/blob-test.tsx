@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 import BlobImageGallery from './components/BlobImageGallery';
 import ImageUpload from './components/ImageUpload';
+import BulkImageUpload from './components/BulkImageUpload';
 
 export default function BlobTest() {
   const [refreshKey, setRefreshKey] = useState(0);
@@ -28,8 +29,13 @@ export default function BlobTest() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-          {/* Upload Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          {/* Bulk Upload Section */}
+          <div>
+            <BulkImageUpload onUploadSuccess={handleUploadSuccess} />
+          </div>
+
+          {/* Individual Upload Section */}
           <div>
             <ImageUpload onUploadSuccess={handleUploadSuccess} />
           </div>

@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { useState } from 'react';
 import Image from 'next/image';
+import BlobImage from './components/BlobImage';
 
 interface Product {
   id: number;
@@ -271,23 +272,17 @@ export default function Home() {
       {/* Video Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
-        {localImages.length > 0 ? (
-          <Image
-            src={localImages.find(img => img.category === "hero")?.image_url || "/matcha-hero.jpg"}
+        <div className="absolute inset-0">
+          <BlobImage
+            category="hero"
+            fallbackSrc="/matcha-hero.jpg"
             alt="Premium Japanese Matcha"
-            fill
-            className="object-cover"
+            width={1920}
+            height={1080}
+            className="w-full h-full object-cover"
             priority
           />
-        ) : (
-          <Image
-            src="/matcha-hero.jpg"
-            alt="Premium Japanese Matcha"
-            fill
-            className="object-cover"
-            priority
-          />
-        )}
+        </div>
         
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/50"></div>
@@ -325,16 +320,7 @@ export default function Home() {
 
       <main className="max-w-7xl mx-auto px-6 py-16">
         
-        {/* Debug Section - Remove this later */}
-        {process.env.NODE_ENV === 'development' && (
-          <div className="mb-8 p-4 bg-yellow-100 border border-yellow-300 rounded-lg">
-            <h3 className="font-bold text-yellow-800 mb-2">Debug Info:</h3>
-            <p className="text-sm text-yellow-700">Images Loaded: Yes</p>
-            <p className="text-sm text-yellow-700">Local Images Count: {localImages.length}</p>
-            <p className="text-sm text-yellow-700">Hero Image: {localImages.find(img => img.category === "hero")?.image_url || 'Not found'}</p>
-            <p className="text-sm text-yellow-700">Founder Image: {localImages.find(img => img.category === "founder")?.image_url || 'Not found'}</p>
-          </div>
-        )}
+
         
         {/* Hero Section */}
         <section className="mb-24">
@@ -379,17 +365,21 @@ export default function Home() {
               </div>
               <div className="text-center">
                 <div className="w-64 h-64 rounded-full overflow-hidden mx-auto mb-6 shadow-xl">
-                  <Image
-                    src={localImages.find(img => img.category === "founder")?.image_url || "/raihanna.jpg"}
+                  <BlobImage
+                    category="founder"
+                    fallbackSrc="/raihanna.jpg"
                     alt="Raihanna - Tandhygienist och Matcha-entusiast"
                     width={256}
                     height={256}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className="text-slate-600 font-inter text-lg">
-                  Tandhygienist • Skönhetsexpert • Matcha-entusiast
-                </p>
+                          <p className="text-slate-600 font-inter text-lg">
+            Tandhygienist • Skönhetsexpert • Matcha-entusiast
+          </p>
+          <p className="text-emerald-600 font-inter text-sm mt-2">
+            💡 Images can be updated via blob storage
+          </p>
               </div>
             </div>
           </div>
@@ -409,8 +399,9 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-xl border border-slate-100">
               <div className="mb-8">
-                <Image
-                  src={localImages.find(img => img.category === "ceremony")?.image_url || "/matcha-ceremony.jpg"}
+                <BlobImage
+                  category="ceremony"
+                  fallbackSrc="/matcha-ceremony.jpg"
                   alt="Traditionell japansk matcha-ceremoni"
                   width={400}
                   height={300}
@@ -440,8 +431,9 @@ export default function Home() {
 
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-10 shadow-xl border border-slate-100">
               <div className="mb-8">
-                <Image
-                  src={localImages.find(img => img.category === "quality")?.image_url || "/matcha-quality.jpg"}
+                <BlobImage
+                  category="quality"
+                  fallbackSrc="/matcha-quality.jpg"
                   alt="Premium matcha-kvalitet"
                   width={400}
                   height={300}
@@ -680,10 +672,13 @@ export default function Home() {
                 className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-100"
               >
                 <div className="mb-6">
-                  <Image
-                    src={product.category === "powder" ? (localImages.find(img => img.category === "powder")?.image_url || "/matcha-powder.jpg") :
-                          product.category === "drinks" ? (localImages.find(img => img.category === "drinks")?.image_url || "/matcha-latte.jpg") :
-                          (localImages.find(img => img.category === "quality")?.image_url || "/matcha-quality.jpg")}
+                  <BlobImage
+                    category={product.category === "powder" ? "powder" : 
+                             product.category === "drinks" ? "drinks" : 
+                             "quality"}
+                    fallbackSrc={product.category === "powder" ? "/matcha-powder.jpg" :
+                                product.category === "drinks" ? "/matcha-latte.jpg" :
+                                "/matcha-quality.jpg"}
                     alt={product.name}
                     width={300}
                     height={200}
@@ -766,8 +761,9 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div className="space-y-6">
                 <div className="mb-8">
-                  <Image
-                    src={localImages.find(img => img.category === "ceremony")?.image_url || "/matcha-ceremony.jpg"}
+                  <BlobImage
+                    category="ceremony"
+                    fallbackSrc="/matcha-ceremony.jpg"
                     alt="Handplockad matcha med kärlek"
                     width={500}
                     height={300}
@@ -814,8 +810,9 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="mt-8">
-                  <Image
-                    src={localImages.find(img => img.category === "quality")?.image_url || "/matcha-quality.jpg"}
+                  <BlobImage
+                    category="quality"
+                    fallbackSrc="/matcha-quality.jpg"
                     alt="Traditionell matcha-tillverkning"
                     width={500}
                     height={300}
